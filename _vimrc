@@ -1,3 +1,12 @@
+" バックアップファイルと一時ファイル設定
+if isdirectory(expand('~/.vim/backup'))
+    set backupdir=~/.vim/backup
+    set directory=~/.vim/backup
+endif
+    set backup
+    set writebackup     " 上書き前にバックアップ作成
+    set swapfile
+
 set modelines=0		" CVE-2007-2438
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
