@@ -85,6 +85,9 @@ alias line='open -a /Applications/Line.app'
 alias firefox='open -a /Applications/Firefox.app'
 alias assh='ssh s1220042@sshgate.u-aizu.ac.jp'
 alias asftp='sftp s1220042@sshgate.u-aizu.ac.jp'
+alias c="clear"
+alias h="history"
+alias tenki="curl -4 wttr.in/Aizu"
 function cd(){
 	builtin cd $1 && ls
 }
@@ -92,3 +95,5 @@ function cd(){
 export GOPATH=$HOME/language/go
 export GOROOT=$HOME/language/go
 
+PROMPT="%{${fg[green]}%}[%n@%T]%{${reset_color}%} %~
+%# "

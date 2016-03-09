@@ -1,16 +1,16 @@
 " バックアップファイルと一時ファイル設定
 if isdirectory(expand('~/.vim/backup'))
-    set backupdir=~/.vim/backup
-    set directory=~/.vim/backup
+  set backupdir=~/.vim/backup
+  set directory=~/.vim/backup
 endif
-    set backup
-    set writebackup     " 上書き前にバックアップ作成
-    set swapfile
+set backup
+set writebackup     " 上書き前にバックアップ作成
+set swapfile
 
 set modelines=0		" CVE-2007-2438
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
-:syntax on "色:
+set hls
 
 set number  "行数
 "set list listchars=tab:\¦\ "tab 縦線
@@ -19,20 +19,46 @@ set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
-:set cursorline "横のライン
-set cursorcolumn "縦のライン
+set cursorline "横のライン
+"set cursorcolumn "縦のライン
+
+"キーバインド{{{
 "括弧入れた後カーソルの位置を中に戻す
-inoremap () ()<Left>
-inoremap {} {}<Left>
-inoremap [] []<Left>
-inoremap <> <><Left>
-inoremap "" ""<Left>
-inoremap '' ''<Left>
-inoremap `' `'<Left>))
+"inoremap () ()<Left>
+"inoremap {} {}<Left>
+"inoremap [] []<Left>
+"inoremap <> <><Left>
+"inoremap "" ""<Left>
+"inoremap '' ''<Left>
+"inoremap `' `'<Left>))
+
 "jjでescする
 inoremap <silent> jj <ESC>
+";を:にする
+nnoremap ; :
+"}}}
+
+"ステータス行を表示
+set laststatus=2
+
+"ステータス行の指定
+set statusline=%<%f\ %m%r%h%w
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
+set statusline+=%=%l/%L,%c%V%8P
+
+
 "改行時に前の行のインデントを継続する
 set autoindent
+
+"vimでマウス操作をを有効にする
+set mouse=a
+set ttymouse=xterm2
+
+"行末のスペースを保存時に自動的に削除
+autocmd BufWritePre * :%s/\s\+$//ge
+
+
+
 " vundleでneocomplcacheプラグインを管理できるように設定
 " vundle
 "---------------------------
@@ -111,9 +137,64 @@ NeoBundle 'Shougo/vimproc', {
   \     'unix' : 'make -f make_unix.mak',
   \    },
   \ }
+"racket
+NeoBundle 'wlangstroth/vim-racket'
+
+"web用プラグイン
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'taichouchou2/surround.vim'
+NeoBundle 'open-browser.vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'tell-k/vim-browsereload-mac'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'taichouchou2/vim-javascript'
+
+" HTML 5 tags
+syn keyword htmlTagName contained article aside audio bb canvas command
+syn keyword htmlTagName contained datalist details dialog embed figure
+syn keyword htmlTagName contained header hgroup keygen mark meter nav output
+syn keyword htmlTagName contained progress time ruby rt rp section time
+syn keyword htmlTagName contained source figcaption
+syn keyword htmlArg contained autofocus autocomplete placeholder min max
+syn keyword htmlArg contained contenteditable contextmenu draggable hidden
+syn keyword htmlArg contained itemprop list sandbox subject spellcheck
+syn keyword htmlArg contained novalidate seamless pattern formtarget
+syn keyword htmlArg contained formaction formenctype formmethod
+syn keyword htmlArg contained sizes scoped async reversed sandbox srcdoc
+syn keyword htmlArg contained hidden role
+syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
+syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
+NeoBundle 'kchmck/vim-coffee-script'
+
+"nerdtree
+NeoBundle 'scrooloose/nerdtree'
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+
+" コメントON/OFFを手軽に実行
+NeoBundle 'tomtom/tcomment_vim'
+
+"インデントに色をつけて見やすくする。
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+let g:indent_guides_enable_on_vim_startup = 1
+
+"editorCording
+NeoBundle 'editorconfig/editorconfig-vim'
+
+
+" solarized
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
+
+set t_Co=256
+syntax enable
+set background=dark
+colorscheme solarized
