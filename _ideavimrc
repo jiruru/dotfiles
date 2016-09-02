@@ -1,0 +1,17 @@
+inoremap <silent> jj <ESC>
+nnoremap ; :
+
+set number
+
+"x キー削除でデフォルトレジスタに入れない
+nnoremap x "_x
+vnoremap x "_x
+
+"検索対象をハイライト
+"ハイライトを消す場合は:noh[l]
+set hlsearch
+
+"ノーマルモード中にEnterで改行
+noremap <CR> i<CR><Esc>
+
+\n

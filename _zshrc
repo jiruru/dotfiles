@@ -92,8 +92,16 @@ function cd(){
 	builtin cd $1 && ls
 }
 
+#export GOPATH=/usr/local/Cellar/go
 export GOPATH=$HOME/language/go
-export GOROOT=$HOME/language/go
+#export GOPATH=$HOME/language/go/src/github.com/
+#export GOPAHT=$HOME/.go
+export GOROOT=/usr/local/Cellar/go/1.6.2/libexec/
 
 PROMPT="%{${fg[green]}%}[%n@%T]%{${reset_color}%} %~
 %# "
+
+export PATH=$PATH:/usr/local/sbin
+export BING_API_KEY="TXacwXIepwPWlLjy2gXqjig4FNVdCeQBFGcuB2R64TlI"
+
+eval "$(rbenv init -)"

@@ -12,6 +12,9 @@ set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 set hls
 
+"clipboard
+set clipboard=unnamed,autoselect
+
 set number  "行数
 "set list listchars=tab:\¦\ "tab 縦線
 ":set tabstop=2 "tab幅
@@ -24,13 +27,13 @@ set cursorline "横のライン
 
 "キーバインド{{{
 "括弧入れた後カーソルの位置を中に戻す
-"inoremap () ()<Left>
-"inoremap {} {}<Left>
-"inoremap [] []<Left>
-"inoremap <> <><Left>
-"inoremap "" ""<Left>
-"inoremap '' ''<Left>
-"inoremap `' `'<Left>))
+inoremap () ()<Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap <> <><Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap `' `'<Left>))
 
 "jjでescする
 inoremap <silent> jj <ESC>
@@ -57,7 +60,13 @@ set ttymouse=xterm2
 "行末のスペースを保存時に自動的に削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
+"行末に$で表示
+set list
+set listchars=eol:$
 
+"x キー削除でデフォルトレジスタに入れない
+nnoremap x "_x
+vnoremap x "_x
 
 " vundleでneocomplcacheプラグインを管理できるように設定
 " vundle
@@ -183,6 +192,15 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 "editorCording
 NeoBundle 'editorconfig/editorconfig-vim'
+
+"Golang plugin
+NeoBundle 'vim-jp/vim-go-extra'
+
+"AOJ.vim
+let g:aoj#user_id = 's1220042'
+NeoBundle 'mopp/AOJ.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'mattn/webapi-vim'
 
 
 " solarized
