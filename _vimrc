@@ -230,13 +230,6 @@ NeoBundle 'editorconfig/editorconfig-vim'
 "Golang plugin
 NeoBundle 'vim-jp/vim-go-extra'
 
-"AOJ.vim
-let g:aoj#user_id = 's1220042'
-NeoBundle 'mopp/AOJ.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'mattn/webapi-vim'
-
-
 " solarized
 NeoBundle 'altercation/vim-colors-solarized'
 
