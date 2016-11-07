@@ -23,7 +23,7 @@ set autoindent
 set expandtab
 set shiftwidth=2
 set cursorline "横のライン
-"set cursorcolumn "縦のライン
+set cursorcolumn "縦のライン
 
 "キーバインド{{{
 "括弧入れた後カーソルの位置を中に戻す
@@ -99,6 +99,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+"C言語系コメントアウト
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
@@ -229,13 +230,6 @@ NeoBundle 'editorconfig/editorconfig-vim'
 
 "Golang plugin
 NeoBundle 'vim-jp/vim-go-extra'
-
-"AOJ.vim
-let g:aoj#user_id = 's1220042'
-NeoBundle 'mopp/AOJ.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'mattn/webapi-vim'
-
 
 " solarized
 NeoBundle 'altercation/vim-colors-solarized'
