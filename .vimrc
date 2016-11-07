@@ -62,7 +62,7 @@ autocmd BufWritePre * :%s/\s\+$//ge
 
 "行末に$で表示
 set list
-set listchars=eol:$
+set listchars=eol:$,tab:>\
 
 "x キー削除でデフォルトレジスタに入れない
 nnoremap x "_x
@@ -229,6 +229,13 @@ NeoBundle 'editorconfig/editorconfig-vim'
 
 "Golang plugin
 NeoBundle 'vim-jp/vim-go-extra'
+
+"AOJ.vim
+let g:aoj#user_id = 's1220042'
+NeoBundle 'mopp/AOJ.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'mattn/webapi-vim'
+
 
 " solarized
 NeoBundle 'altercation/vim-colors-solarized'
