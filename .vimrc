@@ -12,12 +12,14 @@ set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 set hls
 
+"行末に$で表示
+set list  " 不可視文字の可視化
+set listchars=eol:$,tab:>\
+
 "clipboard
 set clipboard=unnamed,autoselect
 
 set number  "行数
-"set list listchars=tab:\¦\ "tab 縦線
-":set tabstop=2 "tab幅
 set tabstop=2
 set autoindent
 set expandtab
@@ -41,6 +43,9 @@ inoremap <silent> jj <ESC>
 nnoremap ; :
 "}}}
 
+"編集関係
+set infercase           " 補完時に大文字小文字を区別しない
+
 "ステータス行を表示
 set laststatus=2
 
@@ -48,7 +53,6 @@ set laststatus=2
 set statusline=%<%f\ %m%r%h%w
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
 set statusline+=%=%l/%L,%c%V%8P
-
 
 "改行時に前の行のインデントを継続する
 set autoindent
@@ -60,9 +64,8 @@ set ttymouse=xterm2
 "行末のスペースを保存時に自動的に削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
-"行末に$で表示
-set list
-set listchars=eol:$,tab:>\
+" w!! でスーパーユーザーとして保存（sudoが使える環境限定）
+cmap w!! w !sudo tee > /dev/null %
 
 "x キー削除でデフォルトレジスタに入れない
 nnoremap x "_x
@@ -75,6 +78,21 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 if !argc()
     autocmd vimenter * NERDTree|normal gg3j
 endif
+
+" set file type
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
+" python template
+autocmd BufNewFile *.py 0r $HOME/.vim/.template/template.py
+
+" HTML template
+autocmd BufNewFile *.html 0r $HOME/.vim/.template/template.html
 
 "nerdcommenter
 
@@ -211,6 +229,9 @@ syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
 syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
 NeoBundle 'kchmck/vim-coffee-script'
 
+"Golang plugin
+NeoBundle 'vim-jp/vim-go-extra'
+
 "nerdtree
 NeoBundle 'scrooloose/nerdtree'
 "nerdcommenter
@@ -227,9 +248,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 "editorCording
 NeoBundle 'editorconfig/editorconfig-vim'
-
-"Golang plugin
-NeoBundle 'vim-jp/vim-go-extra'
 
 " solarized
 NeoBundle 'altercation/vim-colors-solarized'
