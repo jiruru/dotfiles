@@ -23,6 +23,7 @@ set number  "行数
 set tabstop=2
 set autoindent
 set expandtab
+:retab
 set shiftwidth=2
 set cursorline "横のライン
 set cursorcolumn "縦のライン
