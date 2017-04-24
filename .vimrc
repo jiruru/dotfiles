@@ -172,6 +172,17 @@ endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
+
+"python
+NeoBundle "scrooloose/syntastic"
+let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
+NeoBundle 'davidhalter/jedi-vim'
+
+"autocmd FileType python setlocal omnifunc=jedi#completions
+"let g:jedi#completions_enabled = 0
+"let g:jedi#auto_vim_configuration = 0
+
+
 "QuickRun設定
 
   NeoBundleLazy 'thinca/vim-quickrun', {
