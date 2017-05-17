@@ -45,7 +45,7 @@ nnoremap ; :
 "}}}
 
 "編集関係
-set infercase           " 補完時に大文字小文字を区別しない
+set infercase " 補完時に大文字小文字を区別しない
 
 "ステータス行を表示
 set laststatus=2
@@ -76,9 +76,12 @@ vnoremap x "_x
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " ファイル指定で開かれた場合はNERDTreeは表示しない
-if !argc()
-    autocmd vimenter * NERDTree|normal gg3j
-endif
+autocmd vimenter * NERDTree|normal gg3j
+
+"他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+autocmd VimEnter * execute 'NERDTree'
 
 " set file type
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
