@@ -50,11 +50,6 @@ set infercase " 補完時に大文字小文字を区別しない
 "ステータス行を表示
 set laststatus=2
 
-"ステータス行の指定
-set statusline=%<%f\ %m%r%h%w
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
-set statusline+=%=%l/%L,%c%V%8P
-
 "改行時に前の行のインデントを継続する
 set autoindent
 
@@ -124,6 +119,13 @@ let g:NERDTrimTrailingWhitespace = 1
 "C言語系コメントアウト
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
+
+"airline
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline_theme = 'solarized'
+let g:airline#extensions#branch#enabled = 1
+
 
 " vundleでneocomplcacheプラグインを管理できるように設定
 " vundle
@@ -247,8 +249,15 @@ NeoBundle 'kchmck/vim-coffee-script'
 "Golang plugin
 NeoBundle 'vim-jp/vim-go-extra'
 
+"airline
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'tpope/vim-fugitive'
+
+
 "nerdtree
 NeoBundle 'scrooloose/nerdtree'
+
 "nerdcommenter
 NeoBundle 'scrooloose/nerdcommenter'
 
@@ -277,3 +286,4 @@ set t_Co=256
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_termcolors=256
