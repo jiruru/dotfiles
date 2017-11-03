@@ -4,9 +4,7 @@ if isdirectory(expand('~/.vim/backup'))
   set directory=~/.vim/backup
 endif
 set backup
-set writebackup     " 上書き前にバックアップ作成
-set swapfile
-
+set writebackup     " 上書き前にバックアップ作成 set swapfile
 set modelines=0		" CVE-2007-2438
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
@@ -27,6 +25,12 @@ set expandtab
 set shiftwidth=2
 set cursorline "横のライン
 set cursorcolumn "縦のライン
+set ignorecase "検索時に大文字と小文字を区別しない
+
+let mapleader = "\<Space>" "Leaderをスペースにする
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
+
 
 "キーバインド{{{
 "括弧入れた後カーソルの位置を中に戻す
@@ -46,6 +50,16 @@ nnoremap ; :
 
 "編集関係
 set infercase " 補完時に大文字小文字を区別しない
+
+"anzu.vim{{
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-n-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+let g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus = 1
+nmap n <Plug>(anzu-mode-n)
+nmap N <Plug>(anzu-mode-N)
+"}}
 
 "ステータス行を表示
 set laststatus=2
@@ -201,7 +215,6 @@ NeoBundle 'davidhalter/jedi-vim'
  let g:quickrun_config._ = { 'runner' : 'vimproc',
  \ 'runner/vimproc/updatetime' : 200,
  \ 'outputter/buffer/split' : ':botright 8sp',
- \ 'outputter' : 'multi:buffer:quickfix',
  \ 'hook/close_buffer/enable_empty_data' : 1,
  \ 'hook/close_buffer/enable_failure' : 1,
  \ }
@@ -248,6 +261,15 @@ NeoBundle 'kchmck/vim-coffee-script'
 
 "Golang plugin
 NeoBundle 'vim-jp/vim-go-extra'
+NeoBundle 'scrooloose/syntastic'
+
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
+
+"anzu.vim
+NeoBundle "osyo-manga/vim-anzu"
+
 
 "airline
 NeoBundle 'vim-airline/vim-airline'
